@@ -7,20 +7,13 @@ class MinHeap
   end
 
   def push(element)
-    if @data.empty?
-      @root = element
-    end
-    if element <= @root
-      @subroot = @root
-      @root = element
-    end
+    @root = element if @data.empty?
+    @subroot, @root = @root, element if element <= @root
     @data << element
   end
 
   def pop
-    if @data.last == @root && @subroot != @root
-      @root = @subroot
-    end
+    @root = @subroot if @data.last == @root && @subroot != @root
     @data.pop
   end
 
